@@ -14,11 +14,16 @@ if (isset($_POST['booking'])) {
     $handphone = $_POST['handphone'];
     $kode = $_POST['kode'];
     $tipe_antrian = $_POST['tipe'];
-    $i = 1;
+    
+    $get_antri = "Select No_Antrian from pelanggan ORDER BY No_Antrian DESC";
+    $result = mysqli_query($koneksi, $get_antri);
+    $row = mysqli_fetch_assoc($result);
+    $ambil = $row['No_Antrian'];
+    $i = $ambil + 1;
 
-
+    
     if ($kode == "AeZAkMi") {
-        $sql = "SELECT * FROM pelanggan WHERE Id_Pelanggan";
+        $sql = "SELECT * FROM pelanggan WHERE No_Antrian = '$i' ";
         $result = mysqli_query($koneksi, $sql);
         if (!$result->num_rows > 0) {
 
@@ -27,6 +32,7 @@ if (isset($_POST['booking'])) {
             $result = mysqli_query($koneksi, $sql);
             if ($result) {
                 echo "<script>alert('Selamat, data reservasi berhasil tersimpan!')</script>";
+                header("Location: index.html#gaya-rambut");
                 $nama_lengkap = "";
                 $alamat_lengkap = "";
                 $handphone = "";
@@ -38,6 +44,7 @@ if (isset($_POST['booking'])) {
         }
     } else {
         echo "<script>alert('Kode konfirmasi tidak sesuai')</script>";
+        
     }
 }
 ?>
