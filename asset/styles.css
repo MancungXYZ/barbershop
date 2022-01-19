@@ -15,7 +15,7 @@
 
 /* Jumbotron */
 .jumbotron {
-  background-image: url(bg-barber.jpg);
+  background-image: url(../img/bg-barber.jpg);
   background-size: cover;
   height: 640px;
   width: 100%;

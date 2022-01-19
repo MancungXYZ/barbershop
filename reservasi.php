@@ -1,50 +1,23 @@
+<?php
+
+// session_start();
+// if (!isset($_SESSION['username']) && $_SESSION['loggedin'] == FALSE) {
+//     echo "<script>alert('Silahkan untuk login terlebih dahulu')</script>";
+//     header("Location: login.php");
+// }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="author" content="Barbershop">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="This is a login page template based on Bootstrap 5">
-    <title>Daftar | Barbershop KAI</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Reservasi | KAI</title>
 </head>
-
-<?php
-
-require 'koneksi.php';
-
-if (isset($_POST['register'])) {
-    $nama = $_POST['name'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $password2nd = $_POST['password2nd'];
-
-    if ($password == $password2nd) {
-        $sql = "SELECT * FROM pengguna WHERE Username='$username'";
-        $result = mysqli_query($koneksi, $sql);
-        if (!$result->num_rows > 0) {
-            $sql = "INSERT INTO pengguna (Username, Password, Status, Nama_Lengkap)
-                    VALUES ('$username', '$password', 'Pelanggan', '$nama')";
-            $result = mysqli_query($koneksi, $sql);
-            if ($result) {
-                echo "<script>alert('Selamat, registrasi berhasil!')</script>";
-                $nama = "";
-                $username = "";
-                $_POST['password'] = "";
-                $_POST['password2nd'] = "";
-            } else {
-                echo "<script>alert('Woops! Terjadi kesalahan.')</script>";
-            }
-        } else {
-            echo "<script>alert('Woops! Email Sudah Terdaftar.')</script>";
-        }
-    } else {
-        echo "<script>alert('Password Tidak Sesuai')</script>";
-    }
-}
-
-?>
 
 <body>
     <section class="h-100">
@@ -56,7 +29,7 @@ if (isset($_POST['register'])) {
                     </div>
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
-                            <h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
+                            <h1 class="fs-4 card-title fw-bold mb-4">Reservasi</h1>
                             <form method="POST" class="needs-validation" novalidate="" autocomplete="off">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="name">Name Lengkap</label>
@@ -67,7 +40,7 @@ if (isset($_POST['register'])) {
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="mb-2 text-muted" for="email">Username</label>
+                                    <label class="mb-2 text-muted" for="email">Alamat Lengkap</label>
                                     <input id="username" type="text" class="form-control" name="username" value="" required>
                                     <div class="invalid-feedback">
                                         Username is invalid
@@ -75,7 +48,7 @@ if (isset($_POST['register'])) {
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="mb-2 text-muted" for="password">Password</label>
+                                    <label class="mb-2 text-muted" for="password">No Handphone</label>
                                     <input id="password" type="password" class="form-control" name="password" required>
                                     <div class="invalid-feedback">
                                         Password is required
@@ -96,11 +69,6 @@ if (isset($_POST['register'])) {
                                     </button>
                                 </div>
                             </form>
-                        </div>
-                        <div class="card-footer py-3 border-0">
-                            <div class="text-center">
-                                Already have an account? <a href="login.php" class="text-dark">Login</a>
-                            </div>
                         </div>
                     </div>
                     <div class="text-center mt-5 text-muted">

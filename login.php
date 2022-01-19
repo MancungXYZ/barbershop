@@ -11,6 +11,7 @@
 
     <?php
     require 'koneksi.php';
+    session_start();
 
 
     if (isset($_POST['submit'])) {
@@ -18,19 +19,50 @@
         $username = $_POST["username"];
         $password = md5($_POST["password"]);
 
-        $get_user = "select Username, Password from pengguna where Username = '$username'";
+        $get_user = "select * from pengguna where Username = '$username'";
         $result = mysqli_query($koneksi, $get_user);
 
         if ($result->num_rows > 0) {
             $row = mysqli_fetch_assoc($result);
-            $_SESSION['username'] = $row['Username'];
-            $_SESSION['password'] = $row['Password'];
-            $_SESSION['loggedin'] = TRUE;
-            header("Location: dashboard.php");
-        } else {
-            echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
+
+            if ($row['Status'] == 'Pelanggan') {
+
+                $_SESSION['username'] = $row['Username'];
+                $_SESSION['password'] = $row['Password'];
+                $_SESSION['loggedin'] = TRUE;
+                header("Location: reservasi.php");
+            }
+            if ($row['Status'] == 'Kasir') {
+                session_start();
+                $_SESSION['username'] = $row['Username'];
+                $_SESSION['password'] = $row['Password'];
+                $_SESSION['loggedin'] = TRUE;
+                header("Location: kasir.php");
+            }
+            if ($row['Status'] == 'Barbermen') {
+
+                $_SESSION['username'] = $row['Username'];
+                $_SESSION['password'] = $row['Password'];
+                $_SESSION['loggedin'] = TRUE;
+                header("Location: barber.php");
+            }
+            if ($row['Status'] == 'Owner') {
+
+                $_SESSION['username'] = $row['Username'];
+                $_SESSION['password'] = $row['Password'];
+                $_SESSION['loggedin'] = TRUE;
+                header("Location: owner.php");
+            }
+            if ($row['Status'] == 'Admin') {
+
+                $_SESSION['username'] = $row['Username'];
+                $_SESSION['password'] = $row['Password'];
+                $_SESSION['loggedin'] = TRUE;
+                header("Location: admin.php");
+            }
         }
     }
+
     ?>
 </head>
 
