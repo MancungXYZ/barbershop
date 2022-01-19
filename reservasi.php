@@ -1,10 +1,45 @@
 <?php
 
-// session_start();
-// if (!isset($_SESSION['username']) && $_SESSION['loggedin'] == FALSE) {
-//     echo "<script>alert('Silahkan untuk login terlebih dahulu')</script>";
-//     header("Location: login.php");
-// }
+require 'koneksi.php';
+
+session_start();
+if (!isset($_SESSION['username']) && $_SESSION['status'] !== 'Pelanggan') {
+    echo "<script>alert('Silahkan untuk login terlebih dahulu')</script>";
+    header("Location: login.php");
+}
+
+if (isset($_POST['booking'])) {
+    $nama_lengkap = $_POST['name'];
+    $alamat_lengkap = $_POST['alamat'];
+    $handphone = $_POST['handphone'];
+    $kode = $_POST['kode'];
+    $tipe_antrian = $_POST['tipe'];
+    $i = 1;
+
+
+    if ($kode == "AeZAkMi") {
+        $sql = "SELECT * FROM pelanggan WHERE Id_Pelanggan";
+        $result = mysqli_query($koneksi, $sql);
+        if (!$result->num_rows > 0) {
+
+            $sql = "INSERT INTO pelanggan (Nama_Pelanggan, Alamat, Handphone, No_Antrian, Tipe_Antrian)
+                    VALUES ('$nama_lengkap', '$alamat_lengkap', '$handphone', '$i', '$tipe_antrian')";
+            $result = mysqli_query($koneksi, $sql);
+            if ($result) {
+                echo "<script>alert('Selamat, data reservasi berhasil tersimpan!')</script>";
+                $nama_lengkap = "";
+                $alamat_lengkap = "";
+                $handphone = "";
+                $kode = "";
+                $tipe_antrian = "";
+            } else {
+                echo "<script>alert('Woops! Terjadi kesalahan.')</script>";
+            }
+        }
+    } else {
+        echo "<script>alert('Kode konfirmasi tidak sesuai')</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,12 +62,12 @@
                     <div class="text-center my-5">
                         <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="logo" width="100">
                     </div>
-                    <div class="card shadow-lg">
+                    <div class="card shadow-lg rounded">
                         <div class="card-body p-5">
                             <h1 class="fs-4 card-title fw-bold mb-4">Reservasi</h1>
                             <form method="POST" class="needs-validation" novalidate="" autocomplete="off">
                                 <div class="mb-3">
-                                    <label class="mb-2 text-muted" for="name">Name Lengkap</label>
+                                    <label class="mb-2 text-muted" for="name">Nama Lengkap</label>
                                     <input id="name" type="text" class="form-control" name="name" value="" required autofocus>
                                     <div class="invalid-feedback">
                                         Name is required
@@ -41,30 +76,44 @@
 
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="email">Alamat Lengkap</label>
-                                    <input id="username" type="text" class="form-control" name="username" value="" required>
+                                    <input id="alamat" type="text" class="form-control" name="alamat" value="" required>
                                     <div class="invalid-feedback">
-                                        Username is invalid
+                                        Alamat is invalid
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="password">No Handphone</label>
-                                    <input id="password" type="password" class="form-control" name="password" required>
+                                    <input id="handphone" type="tel" class="form-control" name="handphone" required>
                                     <div class="invalid-feedback">
-                                        Password is required
+                                        No Handphone is required
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="mb-2 text-muted" for="password">Masukan Kembali Password</label>
-                                    <input id="password2nd" type="password" class="form-control" name="password2nd" required>
+                                    <label class="mb-2 text-muted" for="password">Tipe Antrian</label>
+                                    <select class="form-select" name="tipe" aria-label="Default select example" required>
+                                        <option selected>Pilih Tipe Antrian</option>
+                                        <option value="Home">Barber At Home</option>
+                                        <option value="Barber">Barber At Store</option>
+                                    </select>
+
                                     <div class="invalid-feedback">
-                                        Password is required
+                                        Tipe Antrian is required
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="mb-2 text-muted" for="password">Masukan Kode Dibawah ini</label>
+                                    <p>AeZAkMi</p>
+                                    <input id="kode" type="text" class="form-control" name="kode" required>
+                                    <div class="invalid-feedback">
+                                        Kode is required
                                     </div>
                                 </div>
 
                                 <div class="align-items-center d-flex">
-                                    <button type="submit" name="register" class="btn btn-primary ms-auto">
+                                    <button type="submit" name="booking" class="btn btn-primary ms-auto">
                                         Register
                                     </button>
                                 </div>
