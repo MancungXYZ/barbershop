@@ -29,16 +29,16 @@
 
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['password'] = $row['Password'];
-                $_SESSION['nama_lengkap'] = $row['Nama_Lengkap'];
                 $_SESSION['status'] = $row['Status'];
+                $_SESSION['nama_lengkap'] = $row['Nama_lengkap'];
                 $_SESSION['loggedin'] = TRUE;
                 header("Location: reservasi.php");
             }
             if ($row['Status'] == 'Kasir') {
-                session_start();
+
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['password'] = $row['Password'];
-                $_SESSION['nama_lengkap'] = $row['Nama_Lengkap'];
+                $_SESSION['nama_lengkap'] = $row['Nama_lengkap'];
                 $_SESSION['status'] = $row['Status'];
                 $_SESSION['loggedin'] = TRUE;
                 header("Location: kasir.php");
@@ -47,7 +47,7 @@
 
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['password'] = $row['Password'];
-                $_SESSION['nama_lengkap'] = $row['Nama_Lengkap'];
+                $_SESSION['nama_lengkap'] = $row['Nama_lengkap'];
                 $_SESSION['status'] = $row['Status'];
                 $_SESSION['loggedin'] = TRUE;
                 header("Location: barber.php");
@@ -56,7 +56,7 @@
 
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['password'] = $row['Password'];
-                $_SESSION['nama_lengkap'] = $row['Nama_Lengkap'];
+                $_SESSION['nama_lengkap'] = $row['Nama_lengkap'];
                 $_SESSION['status'] = $row['Status'];
                 $_SESSION['loggedin'] = TRUE;
                 header("Location: owner.php");
@@ -65,7 +65,7 @@
 
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['password'] = $row['Password'];
-                $_SESSION['nama_lengkap'] = $row['Nama_Lengkap'];
+                $_SESSION['nama_lengkap'] = $row['Nama_lengkap'];
                 $_SESSION['status'] = $row['Status'];
                 $_SESSION['loggedin'] = TRUE;
                 header("Location: admin.php");

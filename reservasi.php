@@ -14,14 +14,14 @@ if (isset($_POST['booking'])) {
     $handphone = $_POST['handphone'];
     $kode = $_POST['kode'];
     $tipe_antrian = $_POST['tipe'];
-    
+
     $get_antri = "Select No_Antrian from pelanggan ORDER BY No_Antrian DESC";
     $result = mysqli_query($koneksi, $get_antri);
     $row = mysqli_fetch_assoc($result);
     $ambil = $row['No_Antrian'];
     $i = $ambil + 1;
 
-    
+
     if ($kode == "AeZAkMi") {
         $sql = "SELECT * FROM pelanggan WHERE No_Antrian = '$i' ";
         $result = mysqli_query($koneksi, $sql);
@@ -44,9 +44,9 @@ if (isset($_POST['booking'])) {
         }
     } else {
         echo "<script>alert('Kode konfirmasi tidak sesuai')</script>";
-        
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +75,7 @@ if (isset($_POST['booking'])) {
                             <form method="POST" class="needs-validation" novalidate="" autocomplete="off">
                                 <div class="mb-3">
                                     <label class="mb-2 text-muted" for="name">Nama Lengkap</label>
-                                    <input id="name" type="text" class="form-control" name="name" value="" required autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" value="<?php echo $_SESSION['nama_lengkap']; ?>" required autofocus>
                                     <div class="invalid-feedback">
                                         Name is required
                                     </div>
