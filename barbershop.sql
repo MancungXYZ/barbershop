@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2022 at 06:15 AM
+-- Generation Time: Jan 22, 2022 at 10:26 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -41,7 +41,8 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`Id_Pelanggan`, `Nama_Pelanggan`, `Alamat`, `Handphone`, `No_Antrian`, `Tipe_Antrian`) VALUES
-(2, 'Reihan Wiyanda', 'Jln Kubang Utara No 25', 2147483647, 1, 'Home');
+(2, 'Reihan Wiyanda', 'Jln Kubang Utara No 25', 2147483647, 1, 'Home'),
+(3, 'Asep', 'Jln Diditu', 892391233, 2, 'Home');
 
 -- --------------------------------------------------------
 
@@ -70,6 +71,32 @@ INSERT INTO `pengguna` (`id_Pengguna`, `Username`, `Password`, `Status`, `Nama_l
 (6, 'firman12345', '12345', 'Kasir', 'Firman S'),
 (7, 'galih12345', '12345', 'Pelanggan', 'Galih Adam Firdaus');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `produk`
+--
+
+CREATE TABLE `produk` (
+  `Id_Produk` int(255) NOT NULL,
+  `Nama_Produk` varchar(255) NOT NULL,
+  `Harga_Produk` int(255) NOT NULL,
+  `Kategori_Produk` varchar(255) NOT NULL,
+  `Foto_Produk` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`Id_Produk`, `Nama_Produk`, `Harga_Produk`, `Kategori_Produk`, `Foto_Produk`) VALUES
+(16, 'Mohack', 25000, 'Model', '2475-ptg-rambut2.jpg'),
+(17, 'Pompadour', 25000, 'Model', '3554-Pompadour.jpg'),
+(18, 'Undercut', 25000, 'Model', '4314-ptg-rambut5.jpg'),
+(19, 'Brush On Top', 25000, 'Model', '1898-ptg-rambut7.jpg'),
+(20, 'Fade', 25000, 'Model', '8170-ptg-rambut3.jpg'),
+(21, 'Comb Over', 30000, 'Model', '3746-ptg-rambut9.jpg');
+
 --
 -- Indexes for dumped tables
 --
@@ -87,6 +114,12 @@ ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id_Pengguna`);
 
 --
+-- Indexes for table `produk`
+--
+ALTER TABLE `produk`
+  ADD PRIMARY KEY (`Id_Produk`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -94,13 +127,19 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `Id_Pelanggan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_Pelanggan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
   MODIFY `id_Pengguna` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `produk`
+--
+ALTER TABLE `produk`
+  MODIFY `Id_Produk` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

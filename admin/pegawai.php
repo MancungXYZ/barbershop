@@ -56,7 +56,7 @@ session_start();
         <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="#">
+                    <a class="nav-link text-white" href="./index.php">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
@@ -64,7 +64,7 @@ session_start();
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="./pegawai.php">
+                    <a class="nav-link text-white active bg-gradient-primary" href="./pegawai.php">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">table_view</i>
                         </div>
@@ -121,17 +121,17 @@ session_start();
                                     <thead class="thead-dark text-center">
                                         <tr>
                                             <th>No</th>
-                                            <th>ID Produk</th>
-                                            <th>Nama Produk</th>
-                                            <th>Harga Produk</th>
-                                            <th>Kategori Produk</th>
-                                            <th>Foto Produk</th>
+                                            <th>ID Pengguna</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Status</th>
+                                            <th>Nama Lengkap</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = mysqli_query($koneksi, "SELECT * FROM produk");
+                                        $sql = mysqli_query($koneksi, "SELECT * FROM pengguna");
                                         //jika query diatas menghasilkan nilai > 0 maka menjalankan script di bawah if...
                                         if (mysqli_num_rows($sql) > 0) {
                                             //membuat variabel untuk menyimpan nomor urut
@@ -142,14 +142,14 @@ session_start();
                                                 echo '
 						<tr>
                             <td>' . $no . '</td>
-							<td>' . $data['Id_Produk'] . '</td>
-							<td>' . $data['Nama_Produk'] . '</td>
-                            <td>' . $data['Harga_Produk'] . '</td>
-                            <td>' . $data['Kategori_Produk'] . '</td>
-                            <td><img src="../upload/' . $data['Foto_Produk'] . '" width=75%; class=rounded-circle /></td>
+							<td>' . $data['id_Pengguna'] . '</td>
+							<td>' . $data['Username'] . '</td>
+                            <td>' . md5($data['Password']) . '</td>
+                            <td>' . $data['Status'] . '</td>
+                            <td>' . $data['Nama_lengkap'] . '</td>
                             <td>
-                            <a href="admin-edit.php?Id_Produk=' . $data['Id_Produk'] . '" class="badge badge-warning">Edit</a>
-                            <a href="admin-delete.php?Id_Produk=' . $data['Id_Produk'] . '" class="badge badge-danger" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
+                            <a href="pegawai-edit.php?Id_Produk=' . $data['id_Pengguna'] . '" class="badge badge-warning">Edit</a>
+                            <a href="pegawai-delete.php?Id_Produk=' . $data['id_Pengguna'] . '" class="badge badge-danger" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
                             </td>
 						</tr>
 						';
