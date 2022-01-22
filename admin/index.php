@@ -39,6 +39,7 @@
 <?php
 
 require '../koneksi.php';
+session_start();
 
 ?>
 
@@ -86,14 +87,11 @@ require '../koneksi.php';
                         <span class="nav-link-text ms-1">RTL</span>
                     </a>
                 </li>
-                <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
-                </li>
             </ul>
         </div>
         <div class="sidenav-footer position-absolute w-100 bottom-0 ">
             <div class="mx-3">
-                <a class="btn bg-gradient-primary mt-4 w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
+                <a class="btn bg-gradient-primary mt-4 w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Log Out</a>
             </div>
         </div>
     </aside>
@@ -112,7 +110,7 @@ require '../koneksi.php';
                     <li class="nav-item d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                             <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Sign In</span>
+                            <span class="d-sm-inline d-none"><?php echo $_SESSION['username']; ?></span>
                         </a>
                     </li>
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -164,7 +162,7 @@ require '../koneksi.php';
 							<td>' . $data['Nama_Produk'] . '</td>
                             <td>' . $data['Harga_Produk'] . '</td>
                             <td>' . $data['Kategori_Produk'] . '</td>
-                            <td>' . $data['Foto_Produk'] . '</td>
+                            <td><img src="../upload/' . $data['Foto_Produk'] . '" width=75%; /></td>
                             <td>
                             <a href="admin-edit.php?Id_Produk=' . $data['Id_Produk'] . '" class="badge badge-warning">Edit</a>
                             <a href="admin-delete.php?Id_Produk=' . $data['Id_Produk'] . '" class="badge badge-danger" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
@@ -183,7 +181,7 @@ require '../koneksi.php';
                                         }
                                         ?>
                                 </table>
-                                <button class="btn btn-primary" onclick="location.href='admin.php'" data-toggle="modal" data-target="#myModal">Tambah Data</button>
+                                <button class="btn btn-primary" onclick="location.href='admin-tambah.php'">Tambah Data</button>
                             </div>
                         </div>
                     </div>

@@ -61,7 +61,7 @@
                 $_SESSION['loggedin'] = TRUE;
                 header("Location: owner.php");
             }
-            if ($row['Status'] == 'Admin') {
+            if ($row['Status'] == '../admin/index.php') {
 
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['password'] = $row['Password'];
