@@ -61,14 +61,14 @@
                 $_SESSION['loggedin'] = TRUE;
                 header("Location: owner.php");
             }
-            if ($row['Status'] == '../admin/index.php') {
+            if ($row['Status'] == 'Admin') {
 
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['password'] = $row['Password'];
                 $_SESSION['nama_lengkap'] = $row['Nama_lengkap'];
                 $_SESSION['status'] = $row['Status'];
                 $_SESSION['loggedin'] = TRUE;
-                header("Location: admin.php");
+                header("Location: admin/index.php");
             }
         }
     }
