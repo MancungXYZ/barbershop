@@ -22,11 +22,17 @@
         $get_user = "select * from pengguna where Username = '$username'";
         $result = mysqli_query($koneksi, $get_user);
 
+        $get_antri = "Select No_Antrian from pelanggan ORDER BY No_Antrian DESC";
+        $hasil = mysqli_query($koneksi, $get_antri);
+
         if ($result->num_rows > 0) {
             $row = mysqli_fetch_assoc($result);
+            $data = mysqli_fetch_assoc($hasil);
 
             if ($row['Status'] == 'Pelanggan') {
 
+                $_SESSION['pengguna'] = $row['id_Pengguna'];
+                $_SESSION['no_antrian'] = $data['No_Antrian'];
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['password'] = $row['Password'];
                 $_SESSION['status'] = $row['Status'];
@@ -36,6 +42,7 @@
             }
             if ($row['Status'] == 'Kasir') {
 
+                $_SESSION['no_antrian'] = $data['No_Antrian'];
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['password'] = $row['Password'];
                 $_SESSION['nama_lengkap'] = $row['Nama_lengkap'];
@@ -45,6 +52,7 @@
             }
             if ($row['Status'] == 'Barbermen') {
 
+                $_SESSION['no_antrian'] = $data['No_Antrian'];
                 $_SESSION['username'] = $row['Username'];
                 $_SESSION['password'] = $row['Password'];
                 $_SESSION['nama_lengkap'] = $row['Nama_lengkap'];
@@ -59,7 +67,7 @@
                 $_SESSION['nama_lengkap'] = $row['Nama_lengkap'];
                 $_SESSION['status'] = $row['Status'];
                 $_SESSION['loggedin'] = TRUE;
-                header("Location: owner.php");
+                header("Location: owner/index.php");
             }
             if ($row['Status'] == 'Admin') {
 

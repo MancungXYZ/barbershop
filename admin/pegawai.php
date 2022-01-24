@@ -148,8 +148,8 @@ session_start();
                             <td>' . $data['Status'] . '</td>
                             <td>' . $data['Nama_lengkap'] . '</td>
                             <td>
-                            <a href="pegawai-edit.php?Id_Produk=' . $data['id_Pengguna'] . '" class="badge badge-warning">Edit</a>
-                            <a href="pegawai-delete.php?Id_Produk=' . $data['id_Pengguna'] . '" class="badge badge-danger" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
+                            <a href="pegawai-edit.php?id_pengguna=' . $data['id_Pengguna'] . '" class="badge badge-warning">Edit</a>
+                            <a href="pegawai-delete.php?id_pengguna=' . $data['id_Pengguna'] . '" class="badge badge-danger" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
                             </td>
 						</tr>
 						';
@@ -165,7 +165,7 @@ session_start();
                                         }
                                         ?>
                                 </table>
-                                <button class="btn btn-primary" onclick="location.href='admin-tambah.php'">Tambah Data</button>
+                                <button class="btn btn-primary" onclick="location.href='pegawai-tambah.php'">Tambah Data</button>
                             </div>
                         </div>
                     </div>

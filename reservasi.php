@@ -8,7 +8,14 @@ if (!isset($_SESSION['username']) && $_SESSION['status'] !== 'Pelanggan') {
     header("Location: login.php");
 }
 
+// if (isset($_SESSION['booked'])) {
+//     echo "<script>alert('Telah melakukan reservasi')</script>";
+//     sleep(5);
+//     header("Location: index.php");
+// }
+
 if (isset($_POST['booking'])) {
+    $_SESSION['booked'] = TRUE;
     $nama_lengkap = $_POST['name'];
     $alamat_lengkap = $_POST['alamat'];
     $handphone = $_POST['handphone'];
@@ -32,7 +39,7 @@ if (isset($_POST['booking'])) {
             $result = mysqli_query($koneksi, $sql);
             if ($result) {
                 echo "<script>alert('Selamat, data reservasi berhasil tersimpan!')</script>";
-                header("Location: index.html#gaya-rambut");
+                header("Location: index.php#gaya-rambut");
                 $nama_lengkap = "";
                 $alamat_lengkap = "";
                 $handphone = "";
@@ -122,6 +129,9 @@ if (isset($_POST['booking'])) {
                                 <div class="align-items-center d-flex">
                                     <button type="submit" name="booking" class="btn btn-primary ms-auto">
                                         Register
+                                    </button>
+                                    <button type="button" name="kembali" onclick="location.href='index.php'" class="btn btn-primary" style="margin-left: 30px;">
+                                        kembali
                                     </button>
                                 </div>
                             </form>

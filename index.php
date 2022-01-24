@@ -25,6 +25,8 @@
 
   <!-- Google Icon -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- FavIcon -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
   <title>Barbershop | KAI</title>
 </head>
@@ -130,14 +132,13 @@
         <div class="row">
           <?php $ambil = $koneksi->query("Select * From produk"); ?>
           <?php while ($permenu = $ambil->fetch_assoc()) { ?>
-
             <div class="col-md-4 mb-3 d-flex justify-content-center text-center">
               <div class="card shadow" style="width: 18rem;">
                 <img src="upload/<?php echo $permenu['Foto_Produk']; ?>" class="card-img-top" alt="Produk">
                 <div class="card-body">
                   <h5 class="card-title"><?php echo $permenu['Nama_Produk']; ?></h5>
                   <p class="card-text mb-3">Rp. <?php echo number_format($permenu['Harga_Produk']); ?></p>
-                  <a href="beli.php?id=<?php echo $permenu['Id_Produk']; ?>" type="button" class="btn btn-primary">Beli</a>
+                  <a href="beli.php?id=<?php echo $permenu['Id_Produk']; ?>" type="button" name="beli" class="btn btn-primary">Beli</a>
                 </div>
               </div>
             </div>
