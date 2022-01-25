@@ -58,18 +58,13 @@ $data = mysqli_fetch_assoc($ambil_data);
                 <label class="col-sm-2 col-form-label mt-3">Bagian</label>
                 <div class="col-sm-10 mt-3">
                     <select name="status" class="form-control mb-3" required>
+                        <option disabled selected>- Pilih Salah Satu -</option>
                         <?php
-                        while ($data) {
-                        ?>
-                            <option value="<?php echo $data['Status']; ?>"> <?php echo $data['Status']; ?></option>
-
-                        <?php
+                        $kategori = mysqli_query($koneksi, "SELECT * FROM pengguna ORDER BY id_Pengguna");
+                        foreach ($kategori as $data) {
+                            echo "<option value='" . $data['Status'] . "' selected=selected>" . $data['Status'] . "</option>";
                         }
                         ?>
-                        <option disabled selected>- Pilih Salah Satu -</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Kasir">Kasir</option>
-                        <option value="Barbermen">Barbermen</option>
                     </select>
                     <input type="submit" name="submit" class="btn btn-primary" value="Simpan">
                     <input type="button" onClick="javascript:history.back()" class="btn btn-primary" value="Kembali">
