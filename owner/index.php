@@ -166,6 +166,7 @@ session_start();
                                             <td>Rp. <?php echo number_format($pendapatan) ?></td>
                                         </tr>
                                     </tfoot>
+                                    <button class="btn btn-success mt-2" onclick=" window.open('export.php','_blank')"><i class="fa fa-save"></i> Simpan PDF</button>
                                 </table>
                             </div>
                         </div>
